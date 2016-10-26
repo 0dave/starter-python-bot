@@ -10,13 +10,13 @@ class Messenger(object):
     def __init__(self, slack_clients):
         self.clients = slack_clients
 
-    def send_message(self, channel_id, msg, user_id):
+    def send_message(self, channel_id, msg):
         # in the case of Group and Private channels, RTM channel payload is a complex dictionary
         if isinstance(channel_id, dict):
             channel_id = channel_id['id']
         logger.debug('Sending msg: %s to channel: %s' % (msg, channel_id))
         channel = self.clients.rtm.server.channels.find(channel_id)
-        txt = '{}, {}'.format(channel.send_message(msg), user_id)
+        txt = '{}, {}'.format(channel.send_message(msg), 'back!')
         self.send_massge(channel_id, txt)
 
     def write_help_message(self, channel_id):
