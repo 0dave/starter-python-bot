@@ -17,7 +17,7 @@ class Messenger(object):
         logger.debug('Sending msg: %s to channel: %s' % (msg, channel_id))
         channel = self.clients.rtm.server.channels.find(channel_id)
         txt = '{}, {}'.format(channel.send_message(msg), 'back!')
-        self.send_massge(channel_id, txt)
+        self.send_message(channel_id, txt)
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
